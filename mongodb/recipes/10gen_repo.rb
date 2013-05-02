@@ -38,7 +38,9 @@ when "debian", "ubuntu"
     action :add
     # notifies :run, "execute[apt-get update]", :immediately
     # Chef 10 style
-    notifies :run, { resources("execute[apt-get update]") => [:immediately] }
+    #notifies :run, { resources("execute[apt-get update]") => [:immediately] }
+    notifies :run, resources(:execute => "apt-get update"), :immediately
+
   end
 
   package "mongodb" do
